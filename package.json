@@ -1,0 +1,30 @@
+{
+  "name": "node-export-dir",
+  "version": "0.0.1",
+  "description": "Export all javascript and json contents of a directory",
+  "main": "bin/index.js",
+  "bin": {
+    "node-export-dir": "index.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./bin/index.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/or9/node-export-dir.git"
+  },
+  "keywords": [
+    "nodejs",
+    "require",
+    "export"
+  ],
+  "author": "Rahman Malik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/or9/node-export-dir/issues"
+  },
+  "homepage": "https://github.com/or9/node-export-dir#readme"
+}

@@ -1,0 +1,7 @@
+{
+	"key": "value",
+	"arr": [ "arr0", "arr1", "arr2" ],
+	"bool": true,
+	"n": 108,
+	"prototype": "pattern"
+}
