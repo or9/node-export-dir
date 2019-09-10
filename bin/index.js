@@ -3,8 +3,6 @@
 const { readdirSync } = require("fs");
 const { dirname } = require("path");
 
-const defaultPath = dirname(module.parent.filename);
-
 /**
  *
  * @example
@@ -16,7 +14,13 @@ const defaultPath = dirname(module.parent.filename);
 
 module.exports = exportDir;
 
-function exportDir (pathname = defaultPath) {
+function exportDir (pathname = "") {
+	if (!pathname) {
+		const reqChildren = require.main.children;
+		const idx = reqChildren.length - 1;
+		pathname = dirname(reqChildren[idx].filename);
+	}
+
 	return readdirSync(pathname)
 		.filter(f => (f.endsWith(".js") || f.endsWith(".json")) && f !== "index.js")
 		.reduce((prev, curr) => {
