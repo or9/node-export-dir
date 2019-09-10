@@ -4,7 +4,7 @@
   "description": "Export all javascript and json contents of a directory",
   "main": "bin/index.js",
   "bin": {
-    "node-export-dir": "index.js"
+    "node-export-dir": "bin/index.js"
   },
   "directories": {
     "test": "test"
