@@ -1,0 +1,26 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = tab
+indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+# Minimum list indent size is 3, as per the CommonMark spec.
+# For some reason, most CommonMark parsers will still parse 2
+# for bulleted lists, but not for numbered lists.
+indent_size = 4
+trim_trailing_whitespace = false
+
+# Ignore paths
+[/node_modules/**]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
