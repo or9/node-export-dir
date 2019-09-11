@@ -24,9 +24,15 @@ function exportDir (pathname = "") {
 	return readdirSync(pathname)
 		.filter(f => (f.endsWith(".js") || f.endsWith(".json")) && f !== "index.js")
 		.reduce((prev, curr) => {
+			var currExportKey = curr.replace(/\.\w+$/, "");
+
+			if (prev.hasOwnProperty(currExportKey)) {
+				currExportKey = curr;
+			}
+
 			return {
 				...prev,
-				[curr.replace(/\.\w+$/, "")]: require(`${pathname}/${curr}`),
+				[currExportKey]: require(`${pathname}/${curr}`),
 			};
 		}, {});
 }
