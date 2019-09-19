@@ -16,23 +16,32 @@ module.exports = exportDir;
 
 function exportDir (pathname = "") {
 	if (!pathname) {
-		const reqChildren = require.main.children;
-		const idx = reqChildren.length - 1;
-		pathname = dirname(reqChildren[idx].filename);
+		const lastChild = getLastChild(require.main);
+		pathname = dirname(lastChild.filename);
 	}
 
 	return readdirSync(pathname)
 		.filter(f => (f.endsWith(".js") || f.endsWith(".json")) && f !== "index.js")
 		.reduce((prev, curr) => {
-			var currExportKey = curr.replace(/\.\w+$/, "");
-
-			if (prev.hasOwnProperty(currExportKey)) {
-				currExportKey = curr;
+			var exportsKey = curr;
+			const extExpr = /\.\w+$/;
+			const exportsKeyAlreadyPresent = prev.hasOwnProperty(curr.replace(extExpr, ""));
+			if (!exportsKeyAlreadyPresent) {
+				exportsKey = curr.replace(/\.\w+$/, "");
 			}
 
 			return {
 				...prev,
-				[currExportKey]: require(`${pathname}/${curr}`),
+				[exportsKey]: require(`${pathname}/${curr}`),
 			};
 		}, {});
+}
+
+function getLastChild (__module) {
+	if (!__module.children.length || __module.children.length === 1) {
+		return __module;
+	} else {
+		const lastChild = __module.children[__module.children.length - 1];
+		return getLastChild(lastChild);
+	}
 }
