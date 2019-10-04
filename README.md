@@ -26,19 +26,19 @@ module.exports = exportDir(`${__dirname}/../somedir`);
 tree test
 test
 ├── path0
-│   ├── index.js
+│   ├── index.js <- module.exports = { p0file0: {...}, p0file1.json: { ... }, p0file2.json: { ... }, p0file3: { ... } }
 │   ├── p0file0.js
 │   ├── p0file1.json
 │   ├── p0file2.json
 │   └── p0file3.js
 ├── path1
-│   ├── index.js
+│   ├── index.js <- module.exports = { p1file0: { ... } }
 │   ├── p1file0.js
 │   ├── p1file1.txt
 │   ├── p1file2.jpg
 │   └── p1file3.md
 └── path2
-    ├── index.js
+    ├── index.js <- module.exports = { p2file0: { ... } }
     └── p2file0.js
 ```
 
